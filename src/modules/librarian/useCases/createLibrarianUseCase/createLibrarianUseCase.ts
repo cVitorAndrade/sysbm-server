@@ -1,6 +1,7 @@
 import { hash } from 'bcrypt';
 import { Librarian } from '../../entities/librarian';
 import { LibrarianRepository } from '../../repositories/LibrarianRepository';
+import { Injectable } from '@nestjs/common';
 
 interface CreateLibrarianRequest {
   email: string;
@@ -12,6 +13,7 @@ interface CreateLibrarianRequest {
   status: string;
 }
 
+@Injectable()
 export class CreateLibrarianUseCase {
   constructor(private librarianRepository: LibrarianRepository) {}
 

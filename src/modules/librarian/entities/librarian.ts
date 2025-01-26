@@ -27,6 +27,10 @@ export class Librarian {
     this._id = id ?? randomUUID();
   }
 
+  get id(): string {
+    return this._id;
+  }
+
   get email(): string {
     return this.props.email;
   }
