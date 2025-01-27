@@ -25,4 +25,30 @@ export class PrismaLibrarianMapper {
       createdAt,
     };
   }
+
+  static toDomain({
+    id,
+    email,
+    name,
+    password,
+    cpf,
+    permission,
+    phoneNumber,
+    status,
+    createdAt,
+  }: LibrarianRaw): Librarian {
+    return new Librarian(
+      {
+        email,
+        name,
+        password,
+        cpf,
+        permission,
+        phoneNumber,
+        status,
+        createdAt,
+      },
+      id,
+    );
+  }
 }

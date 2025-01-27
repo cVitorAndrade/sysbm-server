@@ -14,4 +14,16 @@ export class PrismaLibrarianRepository implements LibrarianRepository {
       data: userRaw,
     });
   }
+
+  async findByEmail(email: string): Promise<Librarian | null> {
+    const librarian = await this.prismaService.librarian.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!librarian) return null;
+
+    return PrismaLibrarianMapper.toDomain(librarian);
+  }
 }
