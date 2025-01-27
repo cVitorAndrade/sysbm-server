@@ -5,9 +5,16 @@ import { APP_GUARD } from '@nestjs/core';
 import { JWTAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.guard';
 import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { BookshelfModule } from './infra/http/modules/bookshelf/bookshelf.module';
+import { ShelfModule } from './infra/http/modules/shelf/shelf.module';
 
 @Module({
-  imports: [LibrarianModule, DatabaseModule, AuthModule, BookshelfModule],
+  imports: [
+    LibrarianModule,
+    DatabaseModule,
+    AuthModule,
+    BookshelfModule,
+    ShelfModule,
+  ],
   controllers: [],
   providers: [
     {

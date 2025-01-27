@@ -4,6 +4,8 @@ import { LibrarianRepository } from 'src/modules/librarian/repositories/Libraria
 import { PrismaLibrarianRepository } from './repositories/PrismaLibrarianRepository';
 import { BookshelfRepository } from 'src/modules/bookshelf/repositories/bookshelfRepository';
 import { PrismaBookshelfRepository } from './repositories/PrismaBookshelfRepository';
+import { ShelfRepository } from 'src/modules/shelf/repositories/shelfRepository';
+import { PrismaShelfRepository } from './repositories/PrismaShelfRepository';
 
 @Module({
   providers: [
@@ -16,7 +18,11 @@ import { PrismaBookshelfRepository } from './repositories/PrismaBookshelfReposit
       provide: BookshelfRepository,
       useClass: PrismaBookshelfRepository,
     },
+    {
+      provide: ShelfRepository,
+      useClass: PrismaShelfRepository,
+    },
   ],
-  exports: [LibrarianRepository, BookshelfRepository],
+  exports: [LibrarianRepository, BookshelfRepository, ShelfRepository],
 })
 export class DatabaseModule {}
