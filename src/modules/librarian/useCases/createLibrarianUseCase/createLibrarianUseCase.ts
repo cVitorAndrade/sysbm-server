@@ -23,7 +23,7 @@ export class CreateLibrarianUseCase {
       password: await hash(createLibrarianRequest.password, 10),
     });
 
-    this.librarianRepository.create(librarian);
+    await this.librarianRepository.create(librarian);
     return librarian;
   }
 }
