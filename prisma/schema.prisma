@@ -28,4 +28,13 @@ model BookShelf {
   color       String
   description String?
   createdAt   DateTime
+  Shelf       Shelf[]
+}
+
+model Shelf {
+  id          String    @id
+  number      String
+  letter      String 
+  bookShelf   BookShelf @relation(fields: [bookShelfId], references: [id], onDelete: Cascade)
+  bookShelfId String
 }
