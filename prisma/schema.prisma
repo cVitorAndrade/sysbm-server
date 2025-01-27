@@ -11,13 +11,21 @@ datasource db {
 }
 
 model Librarian {
-  id          String @id
-  email       String @unique
+  id          String   @id
+  email       String   @unique
   name        String
   password    String
   permission  String
   cpf         String
   phoneNumber String
   status      String
+  createdAt   DateTime
+}
+
+model BookShelf {
+  id          String   @id
+  name        String
+  color       String
+  description String?
   createdAt   DateTime
 }
