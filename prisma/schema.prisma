@@ -20,6 +20,7 @@ model Librarian {
   phoneNumber String
   status      String
   createdAt   DateTime
+  Book        Book[]
 }
 
 model BookShelf {
@@ -29,12 +30,39 @@ model BookShelf {
   description String?
   createdAt   DateTime
   Shelf       Shelf[]
+  Book        Book[]
 }
 
 model Shelf {
   id          String    @id
   number      String
-  letter      String 
+  letter      String
   bookShelf   BookShelf @relation(fields: [bookShelfId], references: [id], onDelete: Cascade)
   bookShelfId String
+  Book        Book[]
+}
+
+model Book {
+  id                 String    @id
+  registrationNumber String
+  author             String
+  volume             String
+  bookShelf          BookShelf @relation(fields: [bookShelfId], references: [id])
+  shelf              Shelf     @relation(fields: [shelfId], references: [id])
+  shelfId            String
+  bookShelfId        String
+  publicationYear    String
+  notes              String
+  publisher          String
+  created_at         DateTime
+  copies             String
+  acquisitionMethod  String
+  title              String
+  librarian          Librarian @relation(fields: [librarianId], references: [id])
+  librarianId        String
+  genre              String
+  language           String
+  available          String
+  isbn               String
+  numberOfPages      String
 }
