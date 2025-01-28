@@ -76,13 +76,16 @@ model Reader {
   createdAt   DateTime
   status      String
   birtDate    DateTime
+  address     Address  @relation(fields: [addressId], references: [id])
+  addressId   String
 }
 
 model Address {
-  id           String @id
+  id           String   @id
   street       String
   number       String
   city         String
   postalCode   String
   neighborhood String
+  Reader       Reader[]
 }
