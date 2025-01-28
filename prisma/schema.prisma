@@ -68,12 +68,21 @@ model Book {
 }
 
 model Reader {
-  id String @id
-  email String @unique
-  name String
-  cpf String
+  id          String   @id
+  email       String   @unique
+  name        String
+  cpf         String
   phoneNumber String
-  createdAt DateTime
-  status String
-  birtDate DateTime
+  createdAt   DateTime
+  status      String
+  birtDate    DateTime
+}
+
+model Address {
+  id           String @id
+  street       String
+  number       String
+  city         String
+  postalCode   String
+  neighborhood String
 }
