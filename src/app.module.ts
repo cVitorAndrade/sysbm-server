@@ -6,6 +6,7 @@ import { JWTAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.guard';
 import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { BookshelfModule } from './infra/http/modules/bookshelf/bookshelf.module';
 import { ShelfModule } from './infra/http/modules/shelf/shelf.module';
+import { BookModule } from './infra/http/modules/book/book.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ShelfModule } from './infra/http/modules/shelf/shelf.module';
     AuthModule,
     BookshelfModule,
     ShelfModule,
+    BookModule,
   ],
   controllers: [],
   providers: [

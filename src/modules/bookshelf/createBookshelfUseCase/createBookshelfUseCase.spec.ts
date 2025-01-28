@@ -1,4 +1,3 @@
-import { Bookshelf } from '../entities/bookshelf';
 import { BookshelfRepositoryInMemory } from '../repositories/bookshelfRepositoryInMemory';
 import { CreateBookshelfUseCase } from './createBookshelfUseCase';
 
@@ -13,7 +12,7 @@ describe('Create bookshelf', () => {
     );
   });
 
-  it('Should be able to create user', async () => {
+  it('Should be able to create bookshelf', async () => {
     expect(bookshelfRepositoryInMemory.bookshelfs).toEqual([]);
     const bookshelf = await createBookshelfUseCase.execute({
       name: 'Bookshelf Example',

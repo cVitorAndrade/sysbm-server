@@ -52,9 +52,9 @@ model Book {
   shelfId            String
   bookShelfId        String
   publicationYear    String
-  notes              String
+  notes              String?
   publisher          String
-  created_at         DateTime
+  createdAt         DateTime
   copies             String
   acquisitionMethod  String
   title              String
