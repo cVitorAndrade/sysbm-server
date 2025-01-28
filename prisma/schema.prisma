@@ -54,7 +54,7 @@ model Book {
   publicationYear    String
   notes              String?
   publisher          String
-  createdAt         DateTime
+  createdAt          DateTime
   copies             String
   acquisitionMethod  String
   title              String
@@ -65,4 +65,15 @@ model Book {
   available          String
   isbn               String
   numberOfPages      String
+}
+
+model Reader {
+  id String @id
+  email String
+  name String
+  cpf String
+  phoneNumber String
+  createdAt DateTime
+  status String
+  birtDate DateTime
 }
