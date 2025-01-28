@@ -69,7 +69,7 @@ model Book {
 
 model Reader {
   id String @id
-  email String
+  email String @unique
   name String
   cpf String
   phoneNumber String
