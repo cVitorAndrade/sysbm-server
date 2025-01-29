@@ -87,5 +87,6 @@ model Address {
   city         String
   postalCode   String
   neighborhood String
+  createdAt    DateTime
   Reader       Reader[]
 }

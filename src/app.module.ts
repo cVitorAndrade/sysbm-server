@@ -7,6 +7,7 @@ import { AuthModule } from './infra/http/modules/auth/auth.module';
 import { BookshelfModule } from './infra/http/modules/bookshelf/bookshelf.module';
 import { ShelfModule } from './infra/http/modules/shelf/shelf.module';
 import { BookModule } from './infra/http/modules/book/book.module';
+import { AddressModule } from './infra/http/modules/address/address.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { BookModule } from './infra/http/modules/book/book.module';
     BookshelfModule,
     ShelfModule,
     BookModule,
+    AddressModule,
   ],
   controllers: [],
   providers: [
