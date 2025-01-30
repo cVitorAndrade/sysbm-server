@@ -8,6 +8,7 @@ import { BookshelfModule } from './infra/http/modules/bookshelf/bookshelf.module
 import { ShelfModule } from './infra/http/modules/shelf/shelf.module';
 import { BookModule } from './infra/http/modules/book/book.module';
 import { AddressModule } from './infra/http/modules/address/address.module';
+import { ReaderModule } from './infra/http/modules/readers/reader.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AddressModule } from './infra/http/modules/address/address.module';
     ShelfModule,
     BookModule,
     AddressModule,
+    ReaderModule,
   ],
   controllers: [],
   providers: [

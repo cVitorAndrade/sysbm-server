@@ -10,6 +10,8 @@ import { BookRepository } from 'src/modules/book/repositories/BookRepository';
 import { PrismaBookRepository } from './repositories/PrismaBookRepository';
 import { AddressRepository } from 'src/modules/address/repositories/AddressRepository';
 import { PrismaAddressRepository } from './repositories/PrismaAddressRepository';
+import { ReaderRepository } from 'src/modules/reader/repositories/readerRepository';
+import { PrismaReaderRepository } from './repositories/PrismaReaderRepository';
 
 @Module({
   providers: [
@@ -34,6 +36,10 @@ import { PrismaAddressRepository } from './repositories/PrismaAddressRepository'
       provide: AddressRepository,
       useClass: PrismaAddressRepository,
     },
+    {
+      provide: ReaderRepository,
+      useClass: PrismaReaderRepository,
+    },
   ],
   exports: [
     LibrarianRepository,
@@ -41,6 +47,7 @@ import { PrismaAddressRepository } from './repositories/PrismaAddressRepository'
     ShelfRepository,
     BookRepository,
     AddressRepository,
+    ReaderRepository,
   ],
 })
 export class DatabaseModule {}

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/infra/database/prisma/database.module';
 import { BookshelfController } from './bookshelf.controller';
-import { CreateBookshelfUseCase } from 'src/modules/bookshelf/createBookshelfUseCase/createBookshelfUseCase';
+import { CreateBookshelfUseCase } from 'src/modules/bookshelf/useCases/createBookshelfUseCase/createBookshelfUseCase';
 
 @Module({
   imports: [DatabaseModule],

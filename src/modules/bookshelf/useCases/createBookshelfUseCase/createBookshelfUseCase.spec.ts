@@ -1,4 +1,4 @@
-import { BookshelfRepositoryInMemory } from '../repositories/bookshelfRepositoryInMemory';
+import { BookshelfRepositoryInMemory } from '../../repositories/bookshelfRepositoryInMemory';
 import { CreateBookshelfUseCase } from './createBookshelfUseCase';
 
 let createBookshelfUseCase: CreateBookshelfUseCase;

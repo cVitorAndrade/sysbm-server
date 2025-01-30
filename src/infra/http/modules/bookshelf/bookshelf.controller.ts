@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateBookshelfBody } from './dtos/createBookshelf';
-import { CreateBookshelfUseCase } from 'src/modules/bookshelf/createBookshelfUseCase/createBookshelfUseCase';
 import { BookshelfViewModel } from './viewModel/bookshelfViewModel';
+import { CreateBookshelfUseCase } from 'src/modules/bookshelf/useCases/createBookshelfUseCase/createBookshelfUseCase';
 
 @Controller('bookshelf')
 export class BookshelfController {

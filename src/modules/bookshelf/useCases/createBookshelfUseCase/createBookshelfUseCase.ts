@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Bookshelf } from '../entities/bookshelf';
-import { BookshelfRepository } from '../repositories/bookshelfRepository';
+import { Bookshelf } from '../../entities/bookshelf';
+import { BookshelfRepository } from '../../repositories/bookshelfRepository';
 
 interface CreateBookshelfRequest {
   name: string;

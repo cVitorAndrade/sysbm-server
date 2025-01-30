@@ -71,7 +71,7 @@ model Reader {
   id          String   @id
   email       String   @unique
   name        String
-  cpf         String
+  cpf         String   @unique
   phoneNumber String
   createdAt   DateTime
   status      String
