@@ -25,8 +25,6 @@ export class BookshelfController {
       id,
     });
 
-    console.log(bookshelf instanceof Bookshelf);
-
     return BookshelfViewModel.toHttp(bookshelf as Bookshelf);
   }
 }

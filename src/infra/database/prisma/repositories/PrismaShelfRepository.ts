@@ -15,4 +15,13 @@ export class PrismaShelfRepository implements ShelfRepository {
       data: shelfRaw,
     });
   }
+
+  async findById(id: string): Promise<Shelf | null> {
+    const shelf = await this.prismaService.shelf.findUnique({
+      where: { id },
+    });
+    if (!shelf) return null;
+
+    return PrismaShelfMapper.toDomain(shelf);
+  }
 }

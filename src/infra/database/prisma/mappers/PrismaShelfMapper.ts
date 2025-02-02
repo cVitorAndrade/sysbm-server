@@ -10,4 +10,15 @@ export class PrismaShelfMapper {
       bookShelfId,
     };
   }
+
+  static toDomain({ id, number, letter, bookShelfId }: ShelfRaw): Shelf {
+    return new Shelf(
+      {
+        bookShelfId,
+        letter,
+        number,
+      },
+      id,
+    );
+  }
 }

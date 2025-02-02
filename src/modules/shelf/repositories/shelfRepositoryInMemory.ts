@@ -6,4 +6,11 @@ export class ShelfRepositoryInMemory implements ShelfRepository {
   async create(shelf: Shelf): Promise<void> {
     this.shelfs.push(shelf);
   }
+
+  async findById(id: string): Promise<Shelf | null> {
+    const shelf = this.shelfs.find((shelf) => shelf.id === id);
+    if (!shelf) return null;
+
+    return shelf;
+  }
 }
