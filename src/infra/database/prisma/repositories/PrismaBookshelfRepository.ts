@@ -15,4 +15,14 @@ export class PrismaBookshelfRepository implements BookshelfRepository {
       data: bookshelfRaw,
     });
   }
+
+  async findById(id: string): Promise<Bookshelf | null> {
+    const bookshelfRaw = await this.prismaService.bookShelf.findUnique({
+      where: { id },
+    });
+    if (!bookshelfRaw) return null;
+
+    const bookshelf = PrismaBookshelfMapper.toDomain(bookshelfRaw);
+    return bookshelf;
+  }
 }

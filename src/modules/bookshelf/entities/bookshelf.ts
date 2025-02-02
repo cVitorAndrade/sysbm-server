@@ -13,7 +13,10 @@ export class Bookshelf {
   private props: BookshelfSchema;
 
   constructor(
-    props: Replace<BookshelfSchema, { createdAt?: Date; description?: string }>,
+    props: Replace<
+      BookshelfSchema,
+      { createdAt?: Date; description?: string | null }
+    >,
     id?: string,
   ) {
     this.props = {

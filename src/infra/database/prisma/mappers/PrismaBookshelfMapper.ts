@@ -17,4 +17,24 @@ export class PrismaBookshelfMapper {
       createdAt,
     };
   }
+
+  static toDomain({
+    id,
+    name,
+    color,
+    description,
+    createdAt,
+  }: BookshelfRaw): Bookshelf {
+    const bookshelf = new Bookshelf(
+      {
+        color,
+        name,
+        description,
+        createdAt,
+      },
+      id,
+    );
+
+    return bookshelf;
+  }
 }
