@@ -24,4 +24,12 @@ export class PrismaShelfRepository implements ShelfRepository {
 
     return PrismaShelfMapper.toDomain(shelf);
   }
+
+  async getAll(): Promise<Shelf[]> {
+    const shelvesRaw = await this.prismaService.shelf.findMany();
+    const shelves = shelvesRaw.map((shelf) =>
+      PrismaShelfMapper.toDomain(shelf),
+    );
+    return shelves;
+  }
 }

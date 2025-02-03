@@ -13,4 +13,8 @@ export class ShelfRepositoryInMemory implements ShelfRepository {
 
     return shelf;
   }
+
+  async getAll(): Promise<Shelf[]> {
+    throw new Error('Method not implemented.');
+  }
 }
