@@ -25,4 +25,11 @@ export class PrismaBookshelfRepository implements BookshelfRepository {
     const bookshelf = PrismaBookshelfMapper.toDomain(bookshelfRaw);
     return bookshelf;
   }
+
+  async getAll(): Promise<Bookshelf[]> {
+    const bookshelfsRaw = await this.prismaService.bookShelf.findMany();
+    return bookshelfsRaw.map((bookshelf) =>
+      PrismaBookshelfMapper.toDomain(bookshelf),
+    );
+  }
 }

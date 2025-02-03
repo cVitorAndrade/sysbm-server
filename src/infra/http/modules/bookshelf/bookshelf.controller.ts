@@ -3,13 +3,14 @@ import { CreateBookshelfBody } from './dtos/createBookshelf';
 import { BookshelfViewModel } from './viewModel/bookshelfViewModel';
 import { CreateBookshelfUseCase } from 'src/modules/bookshelf/useCases/createBookshelfUseCase/createBookshelfUseCase';
 import { GetBookshelfUseCase } from 'src/modules/bookshelf/useCases/getBookshelfUseCase/getBookshelfUseCase';
-import { Bookshelf } from 'src/modules/bookshelf/entities/bookshelf';
+import { GetAllBookshelfUseCase } from 'src/modules/bookshelf/useCases/getAllBookshelfUseCase/getAllBookshelfUseCase';
 
 @Controller('bookshelf')
 export class BookshelfController {
   constructor(
     private createBookshelfUseCase: CreateBookshelfUseCase,
     private getBookshelfUseCase: GetBookshelfUseCase,
+    private getAllBookshelfUseCase: GetAllBookshelfUseCase,
   ) {}
 
   @Post()
@@ -25,6 +26,12 @@ export class BookshelfController {
       id,
     });
 
-    return BookshelfViewModel.toHttp(bookshelf as Bookshelf);
+    return BookshelfViewModel.toHttp(bookshelf);
+  }
+
+  @Get()
+  async getAllBookshelf() {
+    const bookshelfs = await this.getAllBookshelfUseCase.execute();
+    return bookshelfs.map((bookshelf) => BookshelfViewModel.toHttp(bookshelf));
   }
 }
