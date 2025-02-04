@@ -44,10 +44,6 @@ export class CreateBookBody {
 
   @IsString()
   @IsNotEmpty()
-  librarianId: string;
-
-  @IsString()
-  @IsNotEmpty()
   genre: string;
 
   @IsString()
