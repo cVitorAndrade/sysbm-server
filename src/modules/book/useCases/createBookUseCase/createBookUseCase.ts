@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { BookRepository } from '../repositories/BookRepository';
-import { Book } from '../entities/book';
+import { BookRepository } from '../../repositories/BookRepository';
+import { Book } from '../../entities/book';
 
 interface CreateBookRequest {
   registrationNumber: string;

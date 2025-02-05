@@ -6,4 +6,8 @@ export class BookRepositoryInMemory implements BookRepository {
   async create(book: Book): Promise<void> {
     this.books.push(book);
   }
+
+  async getAll(): Promise<Book[]> {
+    throw new Error('Not implemented');
+  }
 }

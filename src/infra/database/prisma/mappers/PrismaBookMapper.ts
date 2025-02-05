@@ -45,4 +45,50 @@ export class PrismaBookMapper {
       volume,
     };
   }
+
+  static toDomain({
+    id,
+    acquisitionMethod,
+    author,
+    available,
+    bookShelfId,
+    copies,
+    createdAt,
+    genre,
+    isbn,
+    language,
+    librarianId,
+    notes,
+    numberOfPages,
+    publicationYear,
+    publisher,
+    registrationNumber,
+    shelfId,
+    title,
+    volume,
+  }: BookRaw): Book {
+    return new Book(
+      {
+        acquisitionMethod,
+        author,
+        available,
+        bookShelfId,
+        copies,
+        genre,
+        isbn,
+        language,
+        librarianId,
+        numberOfPages,
+        publicationYear,
+        publisher,
+        registrationNumber,
+        shelfId,
+        title,
+        volume,
+        createdAt,
+        notes,
+      },
+      id,
+    );
+  }
 }

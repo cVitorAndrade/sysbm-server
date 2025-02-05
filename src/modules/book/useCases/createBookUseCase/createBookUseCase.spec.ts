@@ -1,4 +1,4 @@
-import { BookRepositoryInMemory } from '../repositories/BookRepositoryInMemory';
+import { BookRepositoryInMemory } from '../../repositories/BookRepositoryInMemory';
 import { CreateBookUseCase } from './createBookUseCase';
 
 let createBookUseCase: CreateBookUseCase;

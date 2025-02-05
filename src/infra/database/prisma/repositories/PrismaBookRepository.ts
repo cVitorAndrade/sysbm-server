@@ -15,4 +15,10 @@ export class PrismaBookRepository implements BookRepository {
       data: bookRaw,
     });
   }
+
+  async getAll(): Promise<Book[]> {
+    const booksRaw = await this.prismaService.book.findMany();
+    const books = booksRaw.map((book) => PrismaBookMapper.toDomain(book));
+    return books;
+  }
 }
