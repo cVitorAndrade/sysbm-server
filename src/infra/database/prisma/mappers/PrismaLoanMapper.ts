@@ -33,4 +33,38 @@ export class PrismaLoanMapper {
       timesRenewed,
     };
   }
+
+  static toDomain({
+    id,
+    bookConditionDelivery,
+    bookConditionReturn,
+    bookId,
+    createdAt,
+    finalDate,
+    librarianId,
+    observation,
+    readerId,
+    receivedById,
+    returnDate,
+    status,
+    timesRenewed,
+  }: LoanRaw): Loan {
+    return new Loan(
+      {
+        bookConditionDelivery,
+        bookConditionReturn,
+        bookId,
+        createdAt,
+        finalDate,
+        librarianId,
+        observation,
+        readerId,
+        receivedById,
+        returnDate,
+        status,
+        timesRenewed,
+      },
+      id,
+    );
+  }
 }

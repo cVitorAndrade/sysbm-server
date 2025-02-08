@@ -7,11 +7,18 @@ import { PrismaService } from '../prisma.service';
 @Injectable()
 export class PrismaLoanRepository implements LoanRepository {
   constructor(private prismaService: PrismaService) {}
+
   async create(loan: Loan): Promise<void> {
     const loanRaw = PrismaLoanMapper.toPrisma(loan);
 
     await this.prismaService.loan.create({
       data: loanRaw,
     });
+  }
+
+  async getAll(): Promise<Loan[]> {
+    const loansRaw = await this.prismaService.loan.findMany();
+    const loans = loansRaw.map((loan) => PrismaLoanMapper.toDomain(loan));
+    return loans;
   }
 }
