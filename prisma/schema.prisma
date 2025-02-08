@@ -11,16 +11,18 @@ datasource db {
 }
 
 model Librarian {
-  id          String   @id
-  email       String   @unique
-  name        String
-  password    String
-  permission  String
-  cpf         String
-  phoneNumber String
-  status      String
-  createdAt   DateTime
-  Book        Book[]
+  id            String   @id
+  email         String   @unique
+  name          String
+  password      String
+  permission    String
+  cpf           String
+  phoneNumber   String
+  status        String
+  createdAt     DateTime
+  books         Book[]
+  loansIssued   Loan[]   @relation("IssuedBy")
+  loansReceived Loan[]   @relation("ReceivedBy")
 }
 
 model BookShelf {
@@ -29,8 +31,8 @@ model BookShelf {
   color       String
   description String?
   createdAt   DateTime
-  Shelf       Shelf[]
-  Book        Book[]
+  shelves     Shelf[]
+  books       Book[]
 }
 
 model Shelf {
@@ -39,7 +41,7 @@ model Shelf {
   letter      String
   bookShelf   BookShelf @relation(fields: [bookShelfId], references: [id], onDelete: Cascade)
   bookShelfId String
-  Book        Book[]
+  books       Book[]
 }
 
 model Book {
@@ -63,8 +65,9 @@ model Book {
   genre              String
   language           String
   available          String
-  isbn               String
+  isbn               String    @unique
   numberOfPages      String
+  loans              Loan[]
 }
 
 model Reader {
@@ -78,6 +81,7 @@ model Reader {
   birtDate    DateTime
   address     Address  @relation(fields: [addressId], references: [id])
   addressId   String
+  loans       Loan[]
 }
 
 model Address {
@@ -88,5 +92,34 @@ model Address {
   postalCode   String
   neighborhood String
   createdAt    DateTime
-  Reader       Reader[]
+  readers      Reader[]
+}
+
+enum LoanStatus {
+  active
+  returnedOnTime
+  renewed
+  overdue
+  returnedLate
+  lost
+}
+
+model Loan {
+  id                    String     @id
+  reader                Reader     @relation(fields: [readerId], references: [id])
+  readerId              String
+  librarian             Librarian  @relation("IssuedBy", fields: [librarianId], references: [id])
+  librarianId           String
+  receivedBy            Librarian? @relation("ReceivedBy", fields: [receivedById], references: [id])
+  receivedById          String?
+  book                  Book       @relation(fields: [bookId], references: [id])
+  bookId                String
+  bookConditionDelivery String
+  bookConditionReturn   String?
+  returnDate            DateTime?
+  finalDate             DateTime
+  createdAt             DateTime
+  status                LoanStatus
+  observation           String?
+  timesRenewed          Int
 }

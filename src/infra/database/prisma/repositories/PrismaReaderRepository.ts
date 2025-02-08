@@ -17,4 +17,13 @@ export class PrismaReaderRepository implements ReaderRepository {
       },
     });
   }
+
+  async findByCpf(cpf: string): Promise<Reader | null> {
+    const reader = await this.prismaService.reader.findUnique({
+      where: { cpf },
+    });
+    if (!reader) return null;
+
+    return PrismaReaderMapper.toDomain(reader);
+  }
 }

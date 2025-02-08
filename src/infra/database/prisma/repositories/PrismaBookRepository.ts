@@ -21,4 +21,22 @@ export class PrismaBookRepository implements BookRepository {
     const books = booksRaw.map((book) => PrismaBookMapper.toDomain(book));
     return books;
   }
+
+  async findById(id: string): Promise<Book | null> {
+    const book = await this.prismaService.book.findUnique({
+      where: { id },
+    });
+    if (!book) return null;
+
+    return PrismaBookMapper.toDomain(book);
+  }
+
+  async findByIsbn(isbn: string): Promise<Book | null> {
+    const book = await this.prismaService.book.findUnique({
+      where: { isbn },
+    });
+    if (!book) return null;
+
+    return PrismaBookMapper.toDomain(book);
+  }
 }

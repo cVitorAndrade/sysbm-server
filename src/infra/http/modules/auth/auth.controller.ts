@@ -26,9 +26,4 @@ export class AuthController {
     const access_token = await this.signInUseCase.execute({ librarian: user });
     return { access_token };
   }
-
-  @Get('test')
-  async test(@Request() request: AuthenticatedRequestModel) {
-    return request.user;
-  }
 }
