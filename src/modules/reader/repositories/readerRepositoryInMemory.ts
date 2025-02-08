@@ -6,4 +6,8 @@ export class ReaderRepositoryInMemory implements ReaderRepository {
   async create(reader: Reader): Promise<void> {
     this.readers.push(reader);
   }
+
+  async findByCpf(cpf: string): Promise<Reader | null> {
+    throw new Error('Method not implemented.');
+  }
 }

@@ -1,4 +1,5 @@
 import { Reader as ReaderRaw } from '@prisma/client';
+import { Reader } from 'src/modules/reader/entities/reader';
 
 export class PrismaReaderMapper {
   static toPrisma({
@@ -11,7 +12,7 @@ export class PrismaReaderMapper {
     birtDate,
     addressId,
     createdAt,
-  }: ReaderRaw): ReaderRaw {
+  }: Reader): ReaderRaw {
     return {
       id,
       email,
@@ -23,5 +24,31 @@ export class PrismaReaderMapper {
       addressId,
       createdAt,
     };
+  }
+
+  static toDomain({
+    id,
+    addressId,
+    birtDate,
+    cpf,
+    createdAt,
+    email,
+    name,
+    phoneNumber,
+    status,
+  }: ReaderRaw): Reader {
+    return new Reader(
+      {
+        addressId,
+        birtDate,
+        cpf,
+        email,
+        name,
+        phoneNumber,
+        status,
+        createdAt,
+      },
+      id,
+    );
   }
 }
