@@ -3,6 +3,7 @@ import { Loan } from 'src/modules/loan/entities/loan';
 import { LoanRepository } from 'src/modules/loan/repositories/LoanRepository';
 import { PrismaLoanMapper } from '../mappers/PrismaLoanMapper';
 import { PrismaService } from '../prisma.service';
+import { LoanWithDetails } from 'src/modules/loan/entities/LoanWithDetails';
 
 @Injectable()
 export class PrismaLoanRepository implements LoanRepository {
@@ -16,9 +17,18 @@ export class PrismaLoanRepository implements LoanRepository {
     });
   }
 
-  async getAll(): Promise<Loan[]> {
-    const loansRaw = await this.prismaService.loan.findMany();
-    const loans = loansRaw.map((loan) => PrismaLoanMapper.toDomain(loan));
+  async getAll(): Promise<LoanWithDetails[]> {
+    const loansRaw = await this.prismaService.loan.findMany({
+      include: {
+        book: true,
+        reader: true,
+      },
+    });
+
+    const loans = loansRaw.map((loan) =>
+      PrismaLoanMapper.toDomainWithDetails(loan, loan.book, loan.reader),
+    );
+
     return loans;
   }
 }

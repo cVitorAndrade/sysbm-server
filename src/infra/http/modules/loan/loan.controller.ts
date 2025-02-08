@@ -6,6 +6,7 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticatedRequestMo
 import { Librarian } from 'src/modules/librarian/entities/librarian';
 import { LoanViewModel } from './viewModel/loanViewModel';
 import { GetAllLoansUseCase } from 'src/modules/loan/useCases/getAllLoans/getAllLoans';
+import { LoanWithDetailsViewModel } from './viewModel/loanWithDetailsViewModel';
 
 @Controller('loans')
 export class LoanController {
@@ -42,6 +43,6 @@ export class LoanController {
   @Get()
   async getAllLoans() {
     const loans = await this.getAllLoansUseCase.execute();
-    return loans.map((loan) => LoanViewModel.toHttp(loan));
+    return loans.map((loan) => LoanWithDetailsViewModel.toHttp(loan));
   }
 }
