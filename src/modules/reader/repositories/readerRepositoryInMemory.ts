@@ -10,4 +10,8 @@ export class ReaderRepositoryInMemory implements ReaderRepository {
   async findByCpf(cpf: string): Promise<Reader | null> {
     throw new Error('Method not implemented.');
   }
+
+  async getAll(): Promise<Reader[]> {
+    throw new Error('Method not implemented.');
+  }
 }

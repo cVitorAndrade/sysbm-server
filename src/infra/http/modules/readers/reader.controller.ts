@@ -3,12 +3,14 @@ import { CreateReaderUseCase } from 'src/modules/reader/useCases/createReaderUse
 import { CreateReaderBody } from './dtos/createReaderBody';
 import { ReaderViewModel } from './viewModel/readerViewModel';
 import { GetUserByCpfUseCase } from 'src/modules/reader/useCases/getReaderByCpfUseCase/getReaderByCpfUseCase';
+import { GetAllReadersUseCase } from 'src/modules/reader/useCases/getAllReadersUseCase/getAllReadersUseCase';
 
 @Controller('reader')
 export class ReaderController {
   constructor(
     private createReaderUseCase: CreateReaderUseCase,
     private getUserByCpfUseCase: GetUserByCpfUseCase,
+    private getAllReadersUseCase: GetAllReadersUseCase,
   ) {}
 
   @Post()
@@ -21,5 +23,11 @@ export class ReaderController {
   async getReaderByCpf(@Param('cpf') cpf: string) {
     const reader = await this.getUserByCpfUseCase.execute({ cpf });
     return ReaderViewModel.toHttp(reader);
+  }
+
+  @Get()
+  async getAllReaders() {
+    const readers = await this.getAllReadersUseCase.execute();
+    return readers.map((reader) => ReaderViewModel.toHttp(reader));
   }
 }

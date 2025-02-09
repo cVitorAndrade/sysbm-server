@@ -26,4 +26,11 @@ export class PrismaReaderRepository implements ReaderRepository {
 
     return PrismaReaderMapper.toDomain(reader);
   }
+
+  async getAll(): Promise<Reader[]> {
+    const readers = await this.prismaService.reader.findMany();
+    if (!readers) return null;
+
+    return readers.map((reader) => PrismaReaderMapper.toDomain(reader));
+  }
 }
