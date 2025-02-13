@@ -39,4 +39,14 @@ export class PrismaBookRepository implements BookRepository {
 
     return PrismaBookMapper.toDomain(book);
   }
+
+  async update(book: Book): Promise<void> {
+    const bookRaw = PrismaBookMapper.toPrisma(book);
+    await this.prismaService.book.update({
+      data: bookRaw,
+      where: {
+        id: book.id,
+      },
+    });
+  }
 }

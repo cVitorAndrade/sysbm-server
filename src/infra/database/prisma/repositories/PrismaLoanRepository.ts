@@ -31,4 +31,24 @@ export class PrismaLoanRepository implements LoanRepository {
 
     return loans;
   }
+
+  async findById(id: string): Promise<Loan | null> {
+    const loanRaw = await this.prismaService.loan.findUnique({
+      where: { id },
+    });
+
+    if (!loanRaw) return null;
+
+    return PrismaLoanMapper.toDomain(loanRaw);
+  }
+
+  async save(loan: Loan): Promise<void> {
+    const loanRaw = PrismaLoanMapper.toPrisma(loan);
+    await this.prismaService.loan.update({
+      data: loanRaw,
+      where: {
+        id: loanRaw.id,
+      },
+    });
+  }
 }

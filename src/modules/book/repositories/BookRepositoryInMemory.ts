@@ -18,4 +18,8 @@ export class BookRepositoryInMemory implements BookRepository {
   async findByIsbn(id: string): Promise<Book | null> {
     throw new Error('Method not implemented.');
   }
+
+  async update(book: Book): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }
