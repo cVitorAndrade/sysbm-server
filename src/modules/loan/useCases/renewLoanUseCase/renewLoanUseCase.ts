@@ -30,7 +30,7 @@ export class RenewLoanUseCase {
       ),
     );
 
-    loan.timesRenewed = loan.timesRenewed++;
+    loan.timesRenewed = loan.timesRenewed + 1;
 
     console.log({ loan });
 
