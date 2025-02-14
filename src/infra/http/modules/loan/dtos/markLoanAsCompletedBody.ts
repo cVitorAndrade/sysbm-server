@@ -6,6 +6,5 @@ export class MarkLoanAsCompletedBody {
   @IsString()
   bookConditionReturn: string;
 
-  @IsNotEmpty()
   status: LoanStatus;
 }

@@ -5,7 +5,7 @@ import { LoanStatus } from '../../entities/loanStatus';
 interface MarkLoanAsCompletedRequest {
   receivedById: string;
   bookConditionReturn: string;
-  status: LoanStatus;
+  status: LoanStatus | null;
   loanId: string;
 }
 
@@ -24,10 +24,14 @@ export class MarkLoanAsCompletedUseCase {
 
     loan.bookConditionReturn = bookConditionReturn;
     loan.receivedById = receivedById;
-    loan.status = status;
+    loan.status = status ?? this.determineLoanStatus(loan.finalDate);
     loan.returnDate = new Date();
 
     await this.loanRepository.save(loan);
     return loan;
+  }
+
+  private determineLoanStatus(finalDate: Date): LoanStatus {
+    return new Date() > finalDate ? 'returnedLate' : 'returnedOnTime';
   }
 }

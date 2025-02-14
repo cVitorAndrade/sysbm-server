@@ -17,6 +17,7 @@ import { GetAllLoansUseCase } from 'src/modules/loan/useCases/getAllLoans/getAll
 import { LoanWithDetailsViewModel } from './viewModel/loanWithDetailsViewModel';
 import { MarkLoanAsCompletedUseCase } from 'src/modules/loan/useCases/markLoanAsCompletedUseCase/markLoanAsCompletedUseCase';
 import { MarkLoanAsCompletedBody } from './dtos/markLoanAsCompletedBody';
+import { RenewLoanUseCase } from 'src/modules/loan/useCases/renewLoanUseCase/renewLoanUseCase';
 
 @Controller('loans')
 export class LoanController {
@@ -25,6 +26,7 @@ export class LoanController {
     private getLoanDaysByPageCountUseCase: GetLoanDaysByPageCountUseCase,
     private getAllLoansUseCase: GetAllLoansUseCase,
     private markLoanAsCompletedUseCase: MarkLoanAsCompletedUseCase,
+    private renewLoanUseCase: RenewLoanUseCase,
   ) {}
 
   @Post()
@@ -55,6 +57,12 @@ export class LoanController {
   async getAllLoans() {
     const loans = await this.getAllLoansUseCase.execute();
     return loans.map((loan) => LoanWithDetailsViewModel.toHttp(loan));
+  }
+
+  @Patch('renew/:id')
+  async renewLoan(@Param('id') loanId: string) {
+    const loan = await this.renewLoanUseCase.execute({ loanId });
+    return LoanViewModel.toHttp(loan);
   }
 
   @Patch('complete/:id')
