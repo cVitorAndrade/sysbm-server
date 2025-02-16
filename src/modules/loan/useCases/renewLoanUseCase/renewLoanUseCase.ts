@@ -20,8 +20,6 @@ export class RenewLoanUseCase {
     const canRenew = loan.timesRenewed < 3;
     if (!canRenew) throw new UnauthorizedException();
 
-    console.log({ loan });
-
     const renewDays = 15;
 
     loan.finalDate = new Date(
@@ -31,8 +29,6 @@ export class RenewLoanUseCase {
     );
 
     loan.timesRenewed = loan.timesRenewed + 1;
-
-    console.log({ loan });
 
     await this.loanRepository.save(loan);
 

@@ -29,6 +29,7 @@ model BookShelf {
   id          String   @id
   name        String
   color       String
+  status      String   @default("active")
   description String?
   createdAt   DateTime
   shelves     Shelf[]
@@ -39,6 +40,7 @@ model Shelf {
   id          String    @id
   number      String
   letter      String
+  status      String    @default("active")
   bookShelf   BookShelf @relation(fields: [bookShelfId], references: [id], onDelete: Cascade)
   bookShelfId String
   books       Book[]
@@ -65,6 +67,7 @@ model Book {
   genre              String
   language           String
   available          String
+  status             String    @default("active")
   isbn               String    @unique
   numberOfPages      String
   loans              Loan[]

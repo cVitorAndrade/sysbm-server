@@ -8,6 +8,7 @@ export class PrismaBookshelfMapper {
     color,
     description,
     createdAt,
+    status,
   }: Bookshelf): BookshelfRaw {
     return {
       id,
@@ -15,6 +16,7 @@ export class PrismaBookshelfMapper {
       color,
       description,
       createdAt,
+      status,
     };
   }
 

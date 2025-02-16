@@ -14,6 +14,7 @@ interface BookSchema {
   copies: string;
   acquisitionMethod: string;
   title: string;
+  status: string;
   librarianId: string;
   genre: string;
   language: string;
@@ -27,13 +28,17 @@ export class Book {
   private props: BookSchema;
 
   constructor(
-    props: Replace<BookSchema, { createdAt?: Date; notes?: string }>,
+    props: Replace<
+      BookSchema,
+      { createdAt?: Date; notes?: string; status?: string | null }
+    >,
     id?: string,
   ) {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
       notes: props.notes ?? null,
+      status: props.status ?? 'active',
     };
     this._id = id || randomUUID();
   }
@@ -80,6 +85,14 @@ export class Book {
 
   set bookShelfId(bookShelfId: string) {
     this.props.bookShelfId = bookShelfId;
+  }
+
+  get status(): string {
+    return this.props.status;
+  }
+
+  set status(status: string) {
+    this.props.status = status;
   }
 
   get publicationYear(): string {

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Request,
+} from '@nestjs/common';
 import { CreateBookUseCase } from 'src/modules/book/useCases/createBookUseCase/createBookUseCase';
 import { CreateBookBody } from './dtos/createBookBody';
 import { BookViewModel } from './viewModel/bookViewModel';
@@ -6,6 +14,7 @@ import { AuthenticatedRequestModel } from '../auth/models/authenticatedRequestMo
 import { Librarian } from 'src/modules/librarian/entities/librarian';
 import { GetAllBooksUseCase } from 'src/modules/book/useCases/getAllBookUseCase/getAllBookUseCase';
 import { GetBookByIsbnUseCase } from 'src/modules/book/useCases/getBookByIsbnUseCase/getBookByIsbnUseCase';
+import { DeleteBookByIdUseCase } from 'src/modules/book/useCases/deleteBookByIdUseCase/deleteBookByIdUseCase';
 
 @Controller('book')
 export class BookController {
@@ -13,6 +22,7 @@ export class BookController {
     private createBookUseCase: CreateBookUseCase,
     private getAllBooksUseCase: GetAllBooksUseCase,
     private getBookByIsbnUseCase: GetBookByIsbnUseCase,
+    private deleteBookByIdUseCase: DeleteBookByIdUseCase,
   ) {}
 
   @Post()
@@ -38,5 +48,10 @@ export class BookController {
   async getBookByIsbn(@Param('isbn') isbn: string) {
     const book = await this.getBookByIsbnUseCase.execute({ isbn });
     return BookViewModel.toHttp(book);
+  }
+
+  @Delete('/:id')
+  async deleteBook(@Param('id') bookId: string) {
+    await this.deleteBookByIdUseCase.execute({ bookId });
   }
 }

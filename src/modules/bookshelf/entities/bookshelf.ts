@@ -4,6 +4,7 @@ import { Replace } from 'src/utils/replace';
 interface BookshelfSchema {
   name: string;
   color: string;
+  status: string;
   description: string | null;
   createdAt: Date;
 }
@@ -15,7 +16,7 @@ export class Bookshelf {
   constructor(
     props: Replace<
       BookshelfSchema,
-      { createdAt?: Date; description?: string | null }
+      { createdAt?: Date; description?: string | null; status?: string | null }
     >,
     id?: string,
   ) {
@@ -23,6 +24,7 @@ export class Bookshelf {
       ...props,
       createdAt: props.createdAt ?? new Date(),
       description: props.description ?? null,
+      status: props.status || 'active',
     };
 
     this._id = id || randomUUID();
@@ -44,6 +46,10 @@ export class Bookshelf {
     return this.props.description;
   }
 
+  get status(): string {
+    return this.props.status;
+  }
+
   get createdAt(): Date {
     return this.props.createdAt;
   }
@@ -58,5 +64,9 @@ export class Bookshelf {
 
   set description(description: string) {
     this.props.description = description;
+  }
+
+  set status(status: string) {
+    this.props.status = status;
   }
 }

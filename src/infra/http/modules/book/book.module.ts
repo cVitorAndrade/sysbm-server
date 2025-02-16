@@ -4,10 +4,16 @@ import { BookController } from './book.controller';
 import { CreateBookUseCase } from 'src/modules/book/useCases/createBookUseCase/createBookUseCase';
 import { GetAllBooksUseCase } from 'src/modules/book/useCases/getAllBookUseCase/getAllBookUseCase';
 import { GetBookByIsbnUseCase } from 'src/modules/book/useCases/getBookByIsbnUseCase/getBookByIsbnUseCase';
+import { DeleteBookByIdUseCase } from 'src/modules/book/useCases/deleteBookByIdUseCase/deleteBookByIdUseCase';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [BookController],
-  providers: [CreateBookUseCase, GetAllBooksUseCase, GetBookByIsbnUseCase],
+  providers: [
+    CreateBookUseCase,
+    GetAllBooksUseCase,
+    GetBookByIsbnUseCase,
+    DeleteBookByIdUseCase,
+  ],
 })
 export class BookModule {}

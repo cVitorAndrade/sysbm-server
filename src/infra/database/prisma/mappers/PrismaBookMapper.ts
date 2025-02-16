@@ -11,6 +11,7 @@ export class PrismaBookMapper {
     createdAt,
     genre,
     id,
+    status,
     isbn,
     language,
     librarianId,
@@ -43,6 +44,7 @@ export class PrismaBookMapper {
       shelfId,
       title,
       volume,
+      status,
     };
   }
 
