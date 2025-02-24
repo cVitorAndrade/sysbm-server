@@ -21,6 +21,7 @@ export class BookViewModel {
     shelfId,
     title,
     volume,
+    status,
   }: Book) {
     return {
       acquisitionMethod,
@@ -42,6 +43,7 @@ export class BookViewModel {
       shelfId,
       title,
       volume,
+      status,
     };
   }
 }

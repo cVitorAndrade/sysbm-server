@@ -68,6 +68,7 @@ export class PrismaBookMapper {
     shelfId,
     title,
     volume,
+    status,
   }: BookRaw): Book {
     return new Book(
       {
@@ -89,6 +90,7 @@ export class PrismaBookMapper {
         volume,
         createdAt,
         notes,
+        status
       },
       id,
     );
