@@ -27,10 +27,29 @@ export class PrismaReaderRepository implements ReaderRepository {
     return PrismaReaderMapper.toDomain(reader);
   }
 
+  async findById(id: string): Promise<Reader | null> {
+    const reader = await this.prismaService.reader.findUnique({
+      where: { id },
+    });
+    if (!reader) return null;
+
+    return PrismaReaderMapper.toDomain(reader);
+  }
+
   async getAll(): Promise<Reader[]> {
     const readers = await this.prismaService.reader.findMany();
     if (!readers) return null;
 
     return readers.map((reader) => PrismaReaderMapper.toDomain(reader));
+  }
+
+  async update(reader: Reader): Promise<void> {
+    const readerRaw = PrismaReaderMapper.toPrisma(reader);
+    await this.prismaService.reader.update({
+      data: readerRaw,
+      where: {
+        id: reader.id,
+      },
+    });
   }
 }

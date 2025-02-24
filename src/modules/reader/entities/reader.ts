@@ -20,6 +20,7 @@ export class Reader {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      status: props.status ?? 'active',
     };
 
     this._id = id ?? randomUUID();

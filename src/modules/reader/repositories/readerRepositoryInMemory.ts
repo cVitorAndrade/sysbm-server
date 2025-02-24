@@ -14,4 +14,12 @@ export class ReaderRepositoryInMemory implements ReaderRepository {
   async getAll(): Promise<Reader[]> {
     throw new Error('Method not implemented.');
   }
+
+  async findById(id: string): Promise<Reader | null> {
+    throw new Error('Method not implemented.');
+  }
+
+  async update(reader: Reader): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }
