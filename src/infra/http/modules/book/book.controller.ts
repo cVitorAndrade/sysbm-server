@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Request,
 } from '@nestjs/common';
@@ -15,6 +16,8 @@ import { Librarian } from 'src/modules/librarian/entities/librarian';
 import { GetAllBooksUseCase } from 'src/modules/book/useCases/getAllBookUseCase/getAllBookUseCase';
 import { GetBookByIsbnUseCase } from 'src/modules/book/useCases/getBookByIsbnUseCase/getBookByIsbnUseCase';
 import { DeleteBookByIdUseCase } from 'src/modules/book/useCases/deleteBookByIdUseCase/deleteBookByIdUseCase';
+import { UpdateBookBody } from './dtos/updateBookBody';
+import { UpdateBookUseCase } from 'src/modules/book/useCases/updateBookUseCase/updateBookUseCase';
 
 @Controller('book')
 export class BookController {
@@ -23,6 +26,7 @@ export class BookController {
     private getAllBooksUseCase: GetAllBooksUseCase,
     private getBookByIsbnUseCase: GetBookByIsbnUseCase,
     private deleteBookByIdUseCase: DeleteBookByIdUseCase,
+    private updateBookUseCase: UpdateBookUseCase,
   ) {}
 
   @Post()
@@ -53,5 +57,16 @@ export class BookController {
   @Delete('/:id')
   async deleteBook(@Param('id') bookId: string) {
     await this.deleteBookByIdUseCase.execute({ bookId });
+  }
+
+  @Patch('/:id')
+  async updateBook(
+    @Param('id') bookId: string,
+    @Body() updateBookBody: UpdateBookBody,
+  ) {
+    await this.updateBookUseCase.execute({
+      ...updateBookBody,
+      bookId,
+    });
   }
 }
