@@ -1,10 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateReaderUseCase } from 'src/modules/reader/useCases/createReaderUseCase/createReaderUseCase';
 import { CreateReaderBody } from './dtos/createReaderBody';
 import { ReaderViewModel } from './viewModel/readerViewModel';
 import { GetUserByCpfUseCase } from 'src/modules/reader/useCases/getReaderByCpfUseCase/getReaderByCpfUseCase';
 import { GetAllReadersUseCase } from 'src/modules/reader/useCases/getAllReadersUseCase/getAllReadersUseCase';
 import { DeleteReaderByIdUseCase } from 'src/modules/reader/useCases/deleteReaderByIdUseCase/deleteReaderByIdUseCase';
+import { UpdateReaderBody } from './dtos/updateReaderBody';
+import { UpdateReaderUseCase } from 'src/modules/reader/useCases/updateReaderUseCase/updateReaderUseCase';
 
 @Controller('reader')
 export class ReaderController {
@@ -13,6 +23,7 @@ export class ReaderController {
     private getUserByCpfUseCase: GetUserByCpfUseCase,
     private getAllReadersUseCase: GetAllReadersUseCase,
     private deleteReaderByUseCase: DeleteReaderByIdUseCase,
+    private updateReaderUseCase: UpdateReaderUseCase,
   ) {}
 
   @Post()
@@ -36,5 +47,16 @@ export class ReaderController {
   @Delete('/:id')
   async deleteBook(@Param('id') readerId: string) {
     await this.deleteReaderByUseCase.execute({ readerId });
+  }
+
+  @Patch('/:id')
+  async updateReader(
+    @Param('id') readerId: string,
+    @Body() updateReaderBody: UpdateReaderBody,
+  ) {
+    await this.updateReaderUseCase.execute({
+      ...updateReaderBody,
+      readerId,
+    });
   }
 }
